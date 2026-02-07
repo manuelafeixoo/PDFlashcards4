@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FunLessons – Flashcards 2 (Final Version)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+/* --- ESTILOS VISUALES (Originales [cite: 2-25]) --- */
+:root {
+    --primary: #ff7043;
+    --secondary: #ffca28;
+    --accent: #26a69a;
+    --bg-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    padding: 15px;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(255, 112, 67, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: var(--primary);
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; margin: 0; }
+
+.controls-top {
+    padding: 15px;
+    background: #fff;
+    border-bottom: 2px solid #eee;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+select {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid var(--accent);
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--accent);
+    outline: none;
+    cursor: pointer;
+    background: #e0f2f1;
+}
+
+.scene {
+    width: 100%;
+    height: 350px;
+    perspective: 1000px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 280px;
+    height: 320px;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card.is-flipped { transform: rotateY(180deg); }
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 4px solid #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.card-face.front { background: #fff; border-color: var(--secondary); }
+.card-face.back { background: var(--accent); color: white;
+transform: rotateY(180deg); border-color: var(--accent); }
+
+.emoji-img { 
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem; 
+    line-height: 1;
+}
+
+.emoji-img img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+}
+
+.word-text { font-size: 2.2rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
+.tap-hint { font-size: 0.9rem; color: #aaa; margin-top: 10px; opacity: 0.7; }
+.tap-hint.white { color: rgba(255,255,255,0.8); }
+
+.nav-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: #f9f9f9;
+}
+
+.nav-btn {
+    background: white;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.nav-btn:disabled { border-color: #ccc; color: #ccc; }
+.counter { font-size: 1.1rem; font-weight: bold; color: #777; background: #eee; padding: 5px 15px; border-radius: 15px; }
+
+.sound-btn-small {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 50%;
+    width: 45px; height: 45px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+    <header><div class="logo">⚡ Flashcards 2 <span>🇬🇧</span></div></header>
+
+    <div class="controls-top">
+        <label style="font-weight:bold; color:#666;">Topic:</label>
+        <select id="categorySelect" onchange="changeCategory()">
+            <option value="ALL">🌟 Mix (All)</option>
+            <option value="CALENDAR">📅 Calendar</option>
+            <option value="NUMBERS">🔢 Numbers</option>
+            <option value="SPORTS">⚽ Sports</option>
+            <option value="TV">📺 TV</option>
+            <option value="JOBS">👨‍💼 Jobs</option>
+            <option value="SHOPS">🛍️ Shops</option>
+            <option value="APPEARANCE">🧑 Appearance</option>
+            <option value="PLACES">📍 Places</option>
+        </select>
+    </div>
+
+    <div class="scene">
+        <div class="card" id="flashcard" onclick="flipCard()">
+            <div class="card-face front">
+                <div class="emoji-img" id="cardImg">❓</div>
+                <div class="tap-hint">👆 Tap to flip</div>
+            </div>
+            <div class="card-face back">
+                <div class="word-text" id="cardWord">WORD</div>
+                <button class="sound-btn-small" onclick="event.stopPropagation(); playCurrentAudio()">🔊</button>
+                <div class="tap-hint white">👆 Tap to flip back</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="prevCard()">⬅️</button>
+        <div class="counter" id="counterDisplay">1 / 10</div>
+        <button class="nav-btn" id="nextBtn" onclick="nextCard()">➡️</button>
+    </div>
+</div>
+
+<script>
+const vocab = [
+    /* CATEGORÍA: CALENDAR (PNG) */
+    {en:"JANUARY", img:"JANUARY.png", isImage: true, cat:"CALENDAR"}, {en:"FEBRUARY", img:"FEBRUARY.png", isImage: true, cat:"CALENDAR"}, {en:"MARCH", img:"MARCH.png", isImage: true, cat:"CALENDAR"},
+    {en:"APRIL", img:"APRIL.png", isImage: true, cat:"CALENDAR"}, {en:"MAY", img:"MAY.png", isImage: true, cat:"CALENDAR"}, {en:"JUNE", img:"JUNE.png", isImage: true, cat:"CALENDAR"},
+    {en:"JULY", img:"JULY.png", isImage: true, cat:"CALENDAR"}, {en:"AUGUST", img:"AUGUST.png", isImage: true, cat:"CALENDAR"}, {en:"SEPTEMBER", img:"SEPTEMBER.png", isImage: true, cat:"CALENDAR"},
+    {en:"OCTOBER", img:"OCTOBER.png", isImage: true, cat:"CALENDAR"}, {en:"NOVEMBER", img:"NOVEMBER.png", isImage: true, cat:"CALENDAR"}, {en:"DECEMBER", img:"DECEMBER.png", isImage: true, cat:"CALENDAR"},
+    {en:"MONDAY", img:"MONDAY.png", isImage: true, cat:"CALENDAR"}, {en:"TUESDAY", img:"TUESDAY.png", isImage: true, cat:"CALENDAR"}, {en:"WEDNESDAY", img:"WEDNESDAY.png", isImage: true, cat:"CALENDAR"},
+    {en:"THURSDAY", img:"THURSDAY.png", isImage: true, cat:"CALENDAR"}, {en:"FRIDAY", img:"FRIDAY.png", isImage: true, cat:"CALENDAR"}, {en:"SATURDAY", img:"SATURDAY.png", isImage: true, cat:"CALENDAR"},
+    {en:"SUNDAY", img:"SUNDAY.png", isImage: true, cat:"CALENDAR"}, {en:"SPRING", img:"SPRING.png", isImage: true, cat:"CALENDAR"}, {en:"SUMMER", img:"SUMMER.png", isImage: true, cat:"CALENDAR"},
+    {en:"AUTUMN", img:"AUTUMN.png", isImage: true, cat:"CALENDAR"}, {en:"WINTER", img:"WINTER.png", isImage: true, cat:"CALENDAR"},
+
+    /* CATEGORÍA: NUMBERS (Emojis) */
+    {en:"ONE", img:"1️⃣", cat:"NUMBERS"}, {en:"TWO", img:"2️⃣", cat:"NUMBERS"}, {en:"THREE", img:"3️⃣", cat:"NUMBERS"},
+    {en:"FOUR", img:"4️⃣", cat:"NUMBERS"}, {en:"FIVE", img:"5️⃣", cat:"NUMBERS"}, {en:"SIX", img:"6️⃣", cat:"NUMBERS"},
+    {en:"SEVEN", img:"7️⃣", cat:"NUMBERS"}, {en:"EIGHT", img:"8️⃣", cat:"NUMBERS"}, {en:"NINE", img:"9️⃣", cat:"NUMBERS"},
+    {en:"TEN", img:"🔟", cat:"NUMBERS"}, {en:"TWELVE", img:"1️⃣2️⃣", cat:"NUMBERS"}, {en:"THIRTEEN", img:"1️⃣3️⃣", cat:"NUMBERS"},
+    {en:"FOURTEEN", img:"1️⃣4️⃣", cat:"NUMBERS"}, {en:"FIFTEEN", img:"1️⃣5️⃣", cat:"NUMBERS"}, {en:"SIXTEEN", img:"1️⃣6️⃣", cat:"NUMBERS"},
+    {en:"EIGHTEEN", img:"1️⃣8️⃣", cat:"NUMBERS"}, {en:"NINETEEN", img:"1️⃣9️⃣", cat:"NUMBERS"}, {en:"TWENTY", img:"2️⃣0️⃣", cat:"NUMBERS"},
+    {en:"THIRTY", img:"3️⃣0️⃣", cat:"NUMBERS"}, {en:"FORTY", img:"4️⃣0️⃣", cat:"NUMBERS"}, {en:"FIFTY", img:"5️⃣0️⃣", cat:"NUMBERS"},
+    {en:"SIXTY", img:"6️⃣0️⃣", cat:"NUMBERS"}, {en:"SEVENTY", img:"7️⃣0️⃣", cat:"NUMBERS"}, {en:"EIGHTY", img:"8️⃣0️⃣", cat:"NUMBERS"},
+    {en:"NINETY", img:"9️⃣0️⃣", cat:"NUMBERS"}, {en:"ONE HUNDRED", img:"💯", cat:"NUMBERS"},
+
+    /* CATEGORÍA: SPORTS (Emojis) */
+    {en:"BASKETBALL", img:"🏀", cat:"SPORTS"}, {en:"FOOTBALL", img:"⚽", cat:"SPORTS"}, {en:"GYMNASTICS", img:"🤸", cat:"SPORTS"},
+    {en:"RUNNING", img:"🏃", cat:"SPORTS"}, {en:"SKATEBOARDING", img:"🛹", cat:"SPORTS"}, {en:"SWIMMING", img:"🏊", cat:"SPORTS"},
+    {en:"TABLE TENNIS", img:"🏓", cat:"SPORTS"}, {en:"YOGA", img:"🧘", cat:"SPORTS"},
+
+    /* CATEGORÍA: TV (PNG) */
+    {en:"CARTOON", img:"CARTOON.png", isImage: true, cat:"TV"}, {en:"COOKERY PROGRAMME", img:"COOKERY PROGRAMME.png", isImage: true, cat:"TV"},
+    {en:"DOCUMENTARY", img:"DOCUMENTARY.png", isImage: true, cat:"TV"}, {en:"FILM", img:"FILM.png", isImage: true, cat:"TV"},
+    {en:"MUSIC PROGRAMME", img:"MUSIC PROGRAMME.png", isImage: true, cat:"TV"}, {en:"QUIZ SHOW", img:"QUIZ SHOW.png", isImage: true, cat:"TV"},
+    {en:"TALENT SHOW", img:"TALENT SHOW.png", isImage: true, cat:"TV"}, {en:"THE NEWS", img:"THE NEWS.png", isImage: true, cat:"TV"},
+
+    /* CATEGORÍA: JOBS (Mixto: PNG y Emojis) */
+    {en:"ARCHITECT", img:"ARCHITECT.png", isImage: true, cat:"JOBS"}, {en:"BUILDER", img:"👷", cat:"JOBS"}, {en:"FARMER", img:"👨‍🌾", cat:"JOBS"},
+    {en:"FIREFIGHTER", img:"👨‍🚒", cat:"JOBS"}, {en:"NURSE", img:"NURSE.png", isImage: true, cat:"JOBS"}, {en:"PILOT", img:"👩‍✈️", cat:"JOBS"},
+    {en:"SINGER", img:"SINGER.png", isImage: true, cat:"JOBS"}, {en:"VET", img:"VET.png", isImage: true, cat:"JOBS"}, {en:"TEACHER", img:"👩‍🏫", cat:"JOBS"},
+    {en:"DOCTOR", img:"👩‍⚕️", cat:"JOBS"}, {en:"TAXI DRIVER", img:"TAXI DRIVER.png", isImage: true, cat:"JOBS"}, 
+    {en:"TENNIS PLAYER", img:"TENNIS PLAYER.png", isImage: true, cat:"JOBS"}, {en:"DANCER", img:"DANCER.png", isImage: true, cat:"JOBS"},
+
+    /* CATEGORÍA: SHOPS (Mixto: PNG y Emojis) */
+    {en:"BAKERS", img:"BAKERS.png", isImage: true, cat:"SHOPS"}, {en:"BOOKSHOP", img:"BOOKSHOP.png", isImage: true, cat:"SHOPS"}, {en:"CAFÉ", img:"CAFÉ.png", isImage: true, cat:"SHOPS"},
+    {en:"CLOTHES SHOP", img:"CLOTHES SHOP.png", isImage: true, cat:"SHOPS"}, {en:"DEPARTMENT STORE", img:"DEPARTMENT STORE.png", isImage: true, cat:"SHOPS"}, {en:"GREENGROCERS", img:"GREENGROCERS.png", isImage: true, cat:"SHOPS"},
+    {en:"NEWSAGENTS", img:"NEWSAGENTS.png", isImage: true, cat:"SHOPS"}, {en:"SUPERMARKET", img:"SUPERMARKET.png", isImage: true, cat:"SHOPS"}, {en:"TOY SHOP", img:"TOY SHOP.png", isImage: true, cat:"SHOPS"},
+    {en:"SHOE SHOP", img:"SHOE SHOP.png", isImage: true, cat:"SHOPS"}, 
+    {en:"EURO", img:"💶", cat:"SHOPS"}, {en:"POUND", img:"💷", cat:"SHOPS"}, {en:"DOLLAR", img:"💵", cat:"SHOPS"},
+
+    /* CATEGORÍA: APPEARANCE (PNG) */
+    {en:"BEARD", img:"BEARD.png", isImage: true, cat:"APPEARANCE"}, {en:"CURLY HAIR", img:"CURLY HAIR.png", isImage: true, cat:"APPEARANCE"},
+    {en:"DARK HAIR", img:"DARK HAIR.png", isImage: true, cat:"APPEARANCE"}, {en:"FAIR HAIR", img:"FAIR HAIR.png", isImage: true, cat:"APPEARANCE"},
+    {en:"FRECKLES", img:"FRECKLES.png", isImage: true, cat:"APPEARANCE"}, {en:"GLASSES", img:"GLASSES.png", isImage: true, cat:"APPEARANCE"},
+    {en:"MOUSTACHE", img:"MOUSTACHE.png", isImage: true, cat:"APPEARANCE"}, {en:"STRAIGHT HAIR", img:"STRAIGHT HAIR.png", isImage: true, cat:"APPEARANCE"},
+    {en:"TALL", img:"TALL.png", isImage: true, cat:"APPEARANCE"}, {en:"SHORT", img:"SHORT.png", isImage: true, cat:"APPEARANCE"},
+    {en:"OLD", img:"OLD.png", isImage: true, cat:"APPEARANCE"}, {en:"YOUNG", img:"YOUNG.png", isImage: true, cat:"APPEARANCE"},
+    {en:"THIN", img:"THIN.png", isImage: true, cat:"APPEARANCE"}, {en:"FAT", img:"FAT.png", isImage: true, cat:"APPEARANCE"},
+    {en:"WOMAN", img:"WOMAN.png", isImage: true, cat:"APPEARANCE"}, {en:"MAN", img:"MAN.png", isImage: true, cat:"APPEARANCE"},
+    {en:"BOY", img:"BOY.png", isImage: true, cat:"APPEARANCE"}, {en:"GIRL", img:"GIRL.png", isImage: true, cat:"APPEARANCE"},
+
+    /* CATEGORÍA: PLACES (Emojis) */
+    {en:"AQUARIUM", img:"🐟", cat:"PLACES"}, {en:"ART GALLERY", img:"🖼️", cat:"PLACES"}, {en:"CASTLE", img:"🏰", cat:"PLACES"},
+    {en:"CITY FARM", img:"🚜", cat:"PLACES"}, {en:"FUNFAIR", img:"🎡", cat:"PLACES"}, {en:"STADIUM", img:"🏟️", cat:"PLACES"},
+    {en:"THEATRE", img:"🎭", cat:"PLACES"}, {en:"WATER PARK", img:"🌊", cat:"PLACES"}, {en:"CINEMA", img:"🎬", cat:"PLACES"},
+    {en:"FIRE STATION", img:"🚒", cat:"PLACES"}, {en:"MUSEUM", img:"🏛️", cat:"PLACES"}, {en:"HOSPITAL", img:"🏥", cat:"PLACES"},
+    {en:"POST OFFICE", img:"📮", cat:"PLACES"}, {en:"SHOPPING CENTRE", img:"🛍️", cat:"PLACES"}, {en:"SWIMMING POOL", img:"🏊", cat:"PLACES"},
+    {en:"TRAIN STATION", img:"🚉", cat:"PLACES"}, {en:"ZOO", img:"🦁", cat:"PLACES"}, {en:"SCHOOL", img:"🏫", cat:"PLACES"},
+    {en:"SUPERMARKET", img:"🛒", cat:"PLACES"}, {en:"HOTEL", img:"🏨", cat:"PLACES"}, {en:"BEACH", img:"🏖️", cat:"PLACES"},
+    {en:"PARK", img:"🌳", cat:"PLACES"}, {en:"LIBRARY", img:"📚", cat:"PLACES"}
+];
+
+/* --- LÓGICA MANTENIDA [cite: 34-47] --- */
+let currentList = [], currentIndex = 0, isFlipped = false;
+const ui = {
+    card: document.getElementById("flashcard"),
+    img: document.getElementById("cardImg"),
+    word: document.getElementById("cardWord"),
+    counter: document.getElementById("counterDisplay"),
+    prevBtn: document.getElementById("prevBtn"),
+    nextBtn: document.getElementById("nextBtn")
+};
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function changeCategory() {
+    const cat = document.getElementById("categorySelect").value;
+    let tempList = (cat === "ALL") ? [...vocab] : vocab.filter(item => item.cat === cat);
+    currentList = shuffleArray(tempList);
+    currentIndex = 0;
+    resetCardFace();
+    updateUI();
+}
+
+function updateUI() {
+    if(currentList.length === 0) return;
+    const item = currentList[currentIndex];
+    if (item.isImage) {
+        ui.img.innerHTML = `<img src="${item.img}" alt="${item.en}">`;
+    } else {
+        ui.img.innerHTML = item.img;
+    }
+    ui.word.textContent = item.en;
+    ui.counter.textContent = `${currentIndex + 1} / ${currentList.length}`;
+    ui.prevBtn.disabled = (currentIndex === 0);
+    ui.nextBtn.disabled = (currentIndex === currentList.length - 1);
+}
+
+function flipCard() {
+    isFlipped = !isFlipped;
+    ui.card.classList.toggle("is-flipped", isFlipped);
+    if(isFlipped) setTimeout(playCurrentAudio, 200);
+}
+
+function resetCardFace() { isFlipped = false; ui.card.classList.remove("is-flipped"); }
+function nextCard() { if(currentIndex < currentList.length - 1) { currentIndex++; resetCardFace(); setTimeout(updateUI, 150); } }
+function prevCard() { if(currentIndex > 0) { currentIndex--; resetCardFace(); setTimeout(updateUI, 150); } }
+
+function playCurrentAudio() {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(currentList[currentIndex].en);
+    utterance.lang = "en-GB"; 
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+}
+
+changeCategory();
+</script>
+</body>
+</html>
