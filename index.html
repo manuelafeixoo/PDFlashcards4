@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FunLessons – Flashcards GitHub Ready</title>
+<title>FunLessons – Flashcards GitHub Final</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <style>
@@ -11,12 +11,12 @@
     --primary: #ff7043;
     --secondary: #ffca28;
     --accent: #26a69a;
-    --bg-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); [cite: 2]
+    --bg-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
 }
 
 body {
     margin: 0;
-    font-family: "Segoe UI", Tahoma, sans-serif; [cite: 3]
+    font-family: "Segoe UI", Tahoma, sans-serif;
     background: var(--bg-gradient);
     min-height: 100vh;
     padding: 15px;
@@ -30,8 +30,8 @@ body {
     width: 100%;
     max-width: 600px;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 25px; [cite: 4]
-    box-shadow: 0 10px 30px rgba(255, 112, 67, 0.3); [cite: 5]
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(255, 112, 67, 0.3);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -41,14 +41,15 @@ header {
     background: var(--primary);
     color: #fff;
     padding: 15px;
-    text-align: center; [cite: 6]
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-.logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; margin: 0; } [cite: 7]
+.logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; margin: 0; }
 
 .controls-top {
     padding: 15px;
     background: #fff;
-    border-bottom: 2px solid #eee; [cite: 8]
+    border-bottom: 2px solid #eee;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -56,7 +57,7 @@ header {
 }
 select {
     padding: 10px 20px;
-    border-radius: 25px; [cite: 9]
+    border-radius: 25px;
     border: 2px solid var(--accent);
     font-size: 1rem;
     font-weight: bold;
@@ -69,7 +70,7 @@ select {
 .scene {
     width: 100%;
     height: 350px;
-    perspective: 1000px; [cite: 10]
+    perspective: 1000px;
     margin: 20px 0;
     display: flex;
     justify-content: center;
@@ -80,8 +81,8 @@ select {
     width: 280px;
     height: 320px;
     position: relative;
-    transition: transform 0.6s; [cite: 12]
-    transform-style: preserve-3d; [cite: 11]
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
     cursor: pointer;
 }
 
@@ -90,53 +91,54 @@ select {
 .card-face {
     position: absolute;
     width: 100%;
-    height: 100%; [cite: 13]
+    height: 100%;
     backface-visibility: hidden;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15); [cite: 14]
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     border: 4px solid #fff;
     padding: 10px;
     box-sizing: border-box;
 }
 
 .card-face.front { background: #fff; border-color: var(--secondary); }
-.card-face.back { background: var(--accent); color: white; transform: rotateY(180deg); border-color: var(--accent); } [cite: 15]
+.card-face.back { background: var(--accent); color: white; transform: rotateY(180deg); border-color: var(--accent); }
 
 .emoji-img { 
     width: 100%;
-    height: 200px; [cite: 16]
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 8rem; 
-    line-height: 1; [cite: 17]
+    line-height: 1;
 }
 
 .emoji-img img {
     max-width: 90%;
     max-height: 90%;
-    object-fit: contain; [cite: 18]
+    object-fit: contain;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
 }
 
-.word-text { font-size: 2.1rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; text-align: center; } [cite: 19]
+.word-text { font-size: 2rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
 .tap-hint { font-size: 0.9rem; color: #aaa; margin-top: 10px; opacity: 0.7; }
-.tap-hint.white { color: rgba(255,255,255,0.8); } [cite: 20]
+.tap-hint.white { color: rgba(255,255,255,0.8); }
 
 .nav-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px; [cite: 21]
+    padding: 20px 30px;
     background: #f9f9f9;
 }
 
 .nav-btn {
     background: white;
-    border: 2px solid var(--primary); [cite: 22]
+    border: 2px solid var(--primary);
     color: var(--primary);
     width: 50px; height: 50px;
     border-radius: 50%;
@@ -145,17 +147,17 @@ select {
     display: flex; align-items: center; justify-content: center;
 }
 
-.nav-btn:disabled { border-color: #ccc; color: #ccc; } [cite: 23]
+.nav-btn:disabled { border-color: #ccc; color: #ccc; }
 .counter { font-size: 1.1rem; font-weight: bold; color: #777; background: #eee; padding: 5px 15px; border-radius: 15px; }
 
 .sound-btn-small {
-    background: rgba(255,255,255,0.2); [cite: 24]
+    background: rgba(255,255,255,0.2);
     border: 2px solid #fff;
     color: #fff;
     border-radius: 50%;
     width: 45px; height: 45px;
     cursor: pointer;
-    font-size: 1.2rem; [cite: 25]
+    font-size: 1.2rem;
 }
 </style>
 </head>
@@ -180,14 +182,14 @@ select {
     </div>
 
     <div class="scene">
-        <div class="card" id="flashcard" onclick="flipCard()"> [cite: 27]
+        <div class="card" id="flashcard" onclick="flipCard()">
             <div class="card-face front">
                 <div class="emoji-img" id="cardImg">❓</div>
                 <div class="tap-hint">👆 Tap to flip</div>
             </div>
             <div class="card-face back">
-                <div class="word-text" id="cardWord">WORD</div> [cite: 28]
-                <button class="sound-btn-small" onclick="event.stopPropagation(); playCurrentAudio()">🔊</button> [cite: 29]
+                <div class="word-text" id="cardWord">WORD</div>
+                <button class="sound-btn-small" onclick="event.stopPropagation(); playCurrentAudio()">🔊</button>
                 <div class="tap-hint white">👆 Tap to flip back</div>
             </div>
         </div>
@@ -202,7 +204,7 @@ select {
 
 <script>
 const vocab = [
-    /* CALENDAR (23 words - All lowercase PNG) */
+    /* CALENDAR (23 items - All PNG lowercase) [cite: 30] */
     {en:"JANUARY", img:"january.png", isImage:true, cat:"CALENDAR"}, {en:"FEBRUARY", img:"february.png", isImage:true, cat:"CALENDAR"},
     {en:"MARCH", img:"march.png", isImage:true, cat:"CALENDAR"}, {en:"APRIL", img:"april.png", isImage:true, cat:"CALENDAR"},
     {en:"MAY", img:"may.png", isImage:true, cat:"CALENDAR"}, {en:"JUNE", img:"june.png", isImage:true, cat:"CALENDAR"},
@@ -216,7 +218,7 @@ const vocab = [
     {en:"SUMMER", img:"summer.png", isImage:true, cat:"CALENDAR"}, {en:"AUTUMN", img:"autumn.png", isImage:true, cat:"CALENDAR"},
     {en:"WINTER", img:"winter.png", isImage:true, cat:"CALENDAR"},
 
-    /* NUMBERS (26 words - Emojis) */
+    /* NUMBERS (26 items - Emojis) [cite: 33] */
     {en:"ONE", img:"1️⃣", cat:"NUMBERS"}, {en:"TWO", img:"2️⃣", cat:"NUMBERS"}, {en:"THREE", img:"3️⃣", cat:"NUMBERS"},
     {en:"FOUR", img:"4️⃣", cat:"NUMBERS"}, {en:"FIVE", img:"5️⃣", cat:"NUMBERS"}, {en:"SIX", img:"6️⃣", cat:"NUMBERS"},
     {en:"SEVEN", img:"7️⃣", cat:"NUMBERS"}, {en:"EIGHT", img:"8️⃣", cat:"NUMBERS"}, {en:"NINE", img:"9️⃣", cat:"NUMBERS"},
@@ -227,18 +229,18 @@ const vocab = [
     {en:"SIXTY", img:"6️⃣0️⃣", cat:"NUMBERS"}, {en:"SEVENTY", img:"7️⃣0️⃣", cat:"NUMBERS"}, {en:"EIGHTY", img:"8️⃣0️⃣", cat:"NUMBERS"},
     {en:"NINETY", img:"9️⃣0️⃣", cat:"NUMBERS"}, {en:"ONE HUNDRED", img:"💯", cat:"NUMBERS"},
 
-    /* SPORTS (8 words - Emojis) */
+    /* SPORTS (8 items - Emojis) [cite: 32] */
     {en:"BASKETBALL", img:"🏀", cat:"SPORTS"}, {en:"FOOTBALL", img:"⚽", cat:"SPORTS"}, {en:"GYMNASTICS", img:"🤸", cat:"SPORTS"},
     {en:"RUNNING", img:"🏃", cat:"SPORTS"}, {en:"SKATEBOARDING", img:"🛹", cat:"SPORTS"}, {en:"SWIMMING", img:"🏊", cat:"SPORTS"},
     {en:"TABLE TENNIS", img:"🏓", cat:"SPORTS"}, {en:"YOGA", img:"🧘", cat:"SPORTS"},
 
-    /* TV (8 words - Lowercase PNG) */
+    /* TV (8 items - All PNG lowercase) */
     {en:"CARTOON", img:"cartoon.png", isImage:true, cat:"TV"}, {en:"COOKERY PROGRAMME", img:"cookery programme.png", isImage:true, cat:"TV"},
     {en:"DOCUMENTARY", img:"documentary.png", isImage:true, cat:"TV"}, {en:"FILM", img:"film.png", isImage:true, cat:"TV"},
     {en:"MUSIC PROGRAMME", img:"music programme.png", isImage:true, cat:"TV"}, {en:"QUIZ SHOW", img:"quiz show.png", isImage:true, cat:"TV"},
     {en:"TALENT SHOW", img:"talent show.png", isImage:true, cat:"TV"}, {en:"THE NEWS", img:"the news.png", isImage:true, cat:"TV"},
 
-    /* JOBS (13 words - Mixed) */
+    /* JOBS (13 items - Mixed) [cite: 31] */
     {en:"ARCHITECT", img:"architect.png", isImage:true, cat:"JOBS"}, {en:"BUILDER", img:"👷", cat:"JOBS"},
     {en:"FARMER", img:"👨‍🌾", cat:"JOBS"}, {en:"FIREFIGHTER", img:"👨‍🚒", cat:"JOBS"},
     {en:"NURSE", img:"nurse.png", isImage:true, cat:"JOBS"}, {en:"PILOT", img:"👩‍✈️", cat:"JOBS"},
@@ -247,7 +249,7 @@ const vocab = [
     {en:"TAXI DRIVER", img:"taxi driver.png", isImage:true, cat:"JOBS"}, {en:"TENNIS PLAYER", img:"tennis player.png", isImage:true, cat:"JOBS"},
     {en:"DANCER", img:"dancer.png", isImage:true, cat:"JOBS"},
 
-    /* SHOPS (13 words - Mixed, "cafe" without accent) */
+    /* SHOPS (13 items - Mixed) */
     {en:"BAKERS", img:"bakers.png", isImage:true, cat:"SHOPS"}, {en:"BOOKSHOP", img:"bookshop.png", isImage:true, cat:"SHOPS"},
     {en:"CAFÉ", img:"cafe.png", isImage:true, cat:"SHOPS"}, {en:"CLOTHES SHOP", img:"clothes shop.png", isImage:true, cat:"SHOPS"},
     {en:"DEPARTMENT STORE", img:"department store.png", isImage:true, cat:"SHOPS"}, {en:"GREENGROCERS", img:"greengrocers.png", isImage:true, cat:"SHOPS"},
@@ -255,7 +257,7 @@ const vocab = [
     {en:"TOY SHOP", img:"toy shop.png", isImage:true, cat:"SHOPS"}, {en:"SHOE SHOP", img:"shoe shop.png", isImage:true, cat:"SHOPS"},
     {en:"EURO", img:"💶", cat:"SHOPS"}, {en:"POUND", img:"💷", cat:"SHOPS"}, {en:"DOLLAR", img:"💵", cat:"SHOPS"},
 
-    /* APPEARANCE (18 words - Lowercase PNG) */
+    /* APPEARANCE (18 items - All PNG lowercase) */
     {en:"BEARD", img:"beard.png", isImage:true, cat:"APPEARANCE"}, {en:"CURLY HAIR", img:"curly hair.png", isImage:true, cat:"APPEARANCE"},
     {en:"DARK HAIR", img:"dark hair.png", isImage:true, cat:"APPEARANCE"}, {en:"FAIR HAIR", img:"fair hair.png", isImage:true, cat:"APPEARANCE"},
     {en:"FRECKLES", img:"freckles.png", isImage:true, cat:"APPEARANCE"}, {en:"GLASSES", img:"glasses.png", isImage:true, cat:"APPEARANCE"},
@@ -266,23 +268,19 @@ const vocab = [
     {en:"WOMAN", img:"woman.png", isImage:true, cat:"APPEARANCE"}, {en:"MAN", img:"man.png", isImage:true, cat:"APPEARANCE"},
     {en:"BOY", img:"boy.png", isImage:true, cat:"APPEARANCE"}, {en:"GIRL", img:"girl.png", isImage:true, cat:"APPEARANCE"},
 
-    /* PLACES (23 words - Emojis) */
-    {en:"AQUARIUM", img:"🐟", cat:"PLACES"}, {en:"ART GALLERY", img:"🖼️", cat:"PLACES"},
-    {en:"CASTLE", img:"🏰", cat:"PLACES"}, {en:"CITY FARM", img:"🚜", cat:"PLACES"},
-    {en:"FUNFAIR", img:"🎡", cat:"PLACES"}, {en:"STADIUM", img:"🏟️", cat:"PLACES"},
-    {en:"THEATRE", img:"🎭", cat:"PLACES"}, {en:"WATER PARK", img:"🌊", cat:"PLACES"},
-    {en:"CINEMA", img:"🎬", cat:"PLACES"}, {en:"FIRE STATION", img:"🚒", cat:"PLACES"},
-    {en:"MUSEUM", img:"🏛️", cat:"PLACES"}, {en:"HOSPITAL", img:"🏥", cat:"PLACES"},
-    {en:"POST OFFICE", img:"📮", cat:"PLACES"}, {en:"SHOPPING CENTRE", img:"🛍️", cat:"PLACES"},
-    {en:"SWIMMING POOL", img:"🏊", cat:"PLACES"}, {en:"TRAIN STATION", img:"🚉", cat:"PLACES"},
-    {en:"ZOO", img:"🦁", cat:"PLACES"}, {en:"SCHOOL", img:"🏫", cat:"PLACES"},
-    {en:"SUPERMARKET", img:"🛒", cat:"PLACES"}, {en:"HOTEL", img:"🏨", cat:"PLACES"},
-    {en:"BEACH", img:"🏖️", cat:"PLACES"}, {en:"PARK", img:"🌳", cat:"PLACES"},
-    {en:"LIBRARY", img:"📚", cat:"PLACES"}
+    /* PLACES (23 items - Emojis) */
+    {en:"AQUARIUM", img:"🐟", cat:"PLACES"}, {en:"ART GALLERY", img:"🖼️", cat:"PLACES"}, {en:"CASTLE", img:"🏰", cat:"PLACES"},
+    {en:"CITY FARM", img:"🚜", cat:"PLACES"}, {en:"FUNFAIR", img:"🎡", cat:"PLACES"}, {en:"STADIUM", img:"🏟️", cat:"PLACES"},
+    {en:"THEATRE", img:"🎭", cat:"PLACES"}, {en:"WATER PARK", img:"🌊", cat:"PLACES"}, {en:"CINEMA", img:"🎬", cat:"PLACES"},
+    {en:"FIRE STATION", img:"🚒", cat:"PLACES"}, {en:"MUSEUM", img:"🏛️", cat:"PLACES"}, {en:"HOSPITAL", img:"🏥", cat:"PLACES"},
+    {en:"POST OFFICE", img:"📮", cat:"PLACES"}, {en:"SHOPPING CENTRE", img:"🛍️", cat:"PLACES"}, {en:"SWIMMING POOL", img:"🏊", cat:"PLACES"},
+    {en:"TRAIN STATION", img:"🚉", cat:"PLACES"}, {en:"ZOO", img:"🦁", cat:"PLACES"}, {en:"SCHOOL", img:"🏫", cat:"PLACES"},
+    {en:"SUPERMARKET", img:"🛒", cat:"PLACES"}, {en:"HOTEL", img:"🏨", cat:"PLACES"}, {en:"BEACH", img:"🏖️", cat:"PLACES"},
+    {en:"PARK", img:"🌳", cat:"PLACES"}, {en:"LIBRARY", img:"📚", cat:"PLACES"}
 ];
 
 /* --- LÓGICA DE PROGRAMACIÓN (Mantenida [cite: 34-47]) --- */
-let currentList = [], currentIndex = 0, isFlipped = false; [cite: 34]
+let currentList = [], currentIndex = 0, isFlipped = false;
 const ui = {
     card: document.getElementById("flashcard"),
     img: document.getElementById("cardImg"),
@@ -290,19 +288,19 @@ const ui = {
     counter: document.getElementById("counterDisplay"),
     prevBtn: document.getElementById("prevBtn"),
     nextBtn: document.getElementById("nextBtn")
-}; [cite: 35]
+};
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; [cite: 37]
+        [array[i], array[j]] = [array[j], array[i]];
     }
-    return array; [cite: 38]
-} [cite: 36]
+    return array;
+}
 
 function changeCategory() {
     const cat = document.getElementById("categorySelect").value;
-    let tempList = (cat === "ALL") ? [...vocab] : vocab.filter(item => item.cat === cat); [cite: 39]
+    let tempList = (cat === "ALL") ? [...vocab] : vocab.filter(item => item.cat === cat);
     currentList = shuffleArray(tempList);
     currentIndex = 0;
     resetCardFace();
@@ -310,17 +308,18 @@ function changeCategory() {
 }
 
 function updateUI() {
-    if(currentList.length === 0) return; [cite: 40]
+    if(currentList.length === 0) return;
     const item = currentList[currentIndex];
-    if (item.isImage) { [cite: 41]
+    /* CORRECCIÓN: Renderizado condicional según isImage [cite: 41-42] */
+    if (item.isImage) {
         ui.img.innerHTML = `<img src="${item.img}" alt="${item.en}">`;
     } else {
-        ui.img.innerHTML = item.img; [cite: 42]
+        ui.img.innerHTML = item.img;
     }
     ui.word.textContent = item.en;
-    ui.counter.textContent = `${currentIndex + 1} / ${currentList.length}`; [cite: 43]
+    ui.counter.textContent = `${currentIndex + 1} / ${currentList.length}`;
     ui.prevBtn.disabled = (currentIndex === 0);
-    ui.nextBtn.disabled = (currentIndex === currentList.length - 1); [cite: 44]
+    ui.nextBtn.disabled = (currentIndex === currentList.length - 1);
 }
 
 function flipCard() {
@@ -329,18 +328,19 @@ function flipCard() {
     if(isFlipped) setTimeout(playCurrentAudio, 200);
 }
 
-function resetCardFace() { isFlipped = false; ui.card.classList.remove("is-flipped"); } [cite: 45]
-function nextCard() { if(currentIndex < currentList.length - 1) { currentIndex++; resetCardFace(); setTimeout(updateUI, 150); } } [cite: 46]
+function resetCardFace() { isFlipped = false; ui.card.classList.remove("is-flipped"); }
+function nextCard() { if(currentIndex < currentList.length - 1) { currentIndex++; resetCardFace(); setTimeout(updateUI, 150); } }
 function prevCard() { if(currentIndex > 0) { currentIndex--; resetCardFace(); setTimeout(updateUI, 150); } }
 
 function playCurrentAudio() {
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(currentList[currentIndex].en); [cite: 47]
+    const utterance = new SpeechSynthesisUtterance(currentList[currentIndex].en);
     utterance.lang = "en-GB"; utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
 }
 
 changeCategory();
+console.log("App ready. Vocabulary items loaded: " + vocab.length);
 </script>
 </body>
 </html>
