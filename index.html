@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FunLessons – Flashcards 2 (Final Version)</title>
+<title>FunLessons – Flashcards GitHub Ready</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <style>
@@ -11,12 +11,12 @@
     --primary: #ff7043;
     --secondary: #ffca28;
     --accent: #26a69a;
-    --bg-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    --bg-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); [cite: 2]
 }
 
 body {
     margin: 0;
-    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-family: "Segoe UI", Tahoma, sans-serif; [cite: 3]
     background: var(--bg-gradient);
     min-height: 100vh;
     padding: 15px;
@@ -30,8 +30,8 @@ body {
     width: 100%;
     max-width: 600px;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(255, 112, 67, 0.3);
+    border-radius: 25px; [cite: 4]
+    box-shadow: 0 10px 30px rgba(255, 112, 67, 0.3); [cite: 5]
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -41,15 +41,14 @@ header {
     background: var(--primary);
     color: #fff;
     padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center; [cite: 6]
 }
-.logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; margin: 0; }
+.logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; margin: 0; } [cite: 7]
 
 .controls-top {
     padding: 15px;
     background: #fff;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #eee; [cite: 8]
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -57,7 +56,7 @@ header {
 }
 select {
     padding: 10px 20px;
-    border-radius: 25px;
+    border-radius: 25px; [cite: 9]
     border: 2px solid var(--accent);
     font-size: 1rem;
     font-weight: bold;
@@ -70,7 +69,7 @@ select {
 .scene {
     width: 100%;
     height: 350px;
-    perspective: 1000px;
+    perspective: 1000px; [cite: 10]
     margin: 20px 0;
     display: flex;
     justify-content: center;
@@ -81,8 +80,8 @@ select {
     width: 280px;
     height: 320px;
     position: relative;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+    transition: transform 0.6s; [cite: 12]
+    transform-style: preserve-3d; [cite: 11]
     cursor: pointer;
 }
 
@@ -91,55 +90,53 @@ select {
 .card-face {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100%; [cite: 13]
     backface-visibility: hidden;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15); [cite: 14]
     border: 4px solid #fff;
     padding: 10px;
     box-sizing: border-box;
 }
 
 .card-face.front { background: #fff; border-color: var(--secondary); }
-.card-face.back { background: var(--accent); color: white;
-transform: rotateY(180deg); border-color: var(--accent); }
+.card-face.back { background: var(--accent); color: white; transform: rotateY(180deg); border-color: var(--accent); } [cite: 15]
 
 .emoji-img { 
     width: 100%;
-    height: 200px;
+    height: 200px; [cite: 16]
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 8rem; 
-    line-height: 1;
+    line-height: 1; [cite: 17]
 }
 
 .emoji-img img {
     max-width: 90%;
     max-height: 90%;
-    object-fit: contain;
-    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+    object-fit: contain; [cite: 18]
 }
 
-.word-text { font-size: 2.2rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
+.word-text { font-size: 2.1rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; text-align: center; } [cite: 19]
 .tap-hint { font-size: 0.9rem; color: #aaa; margin-top: 10px; opacity: 0.7; }
-.tap-hint.white { color: rgba(255,255,255,0.8); }
+.tap-hint.white { color: rgba(255,255,255,0.8); } [cite: 20]
 
 .nav-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 20px 30px; [cite: 21]
     background: #f9f9f9;
 }
 
 .nav-btn {
     background: white;
-    border: 2px solid var(--primary);
+    border: 2px solid var(--primary); [cite: 22]
     color: var(--primary);
     width: 50px; height: 50px;
     border-radius: 50%;
@@ -148,17 +145,17 @@ transform: rotateY(180deg); border-color: var(--accent); }
     display: flex; align-items: center; justify-content: center;
 }
 
-.nav-btn:disabled { border-color: #ccc; color: #ccc; }
+.nav-btn:disabled { border-color: #ccc; color: #ccc; } [cite: 23]
 .counter { font-size: 1.1rem; font-weight: bold; color: #777; background: #eee; padding: 5px 15px; border-radius: 15px; }
 
 .sound-btn-small {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.2); [cite: 24]
     border: 2px solid #fff;
     color: #fff;
     border-radius: 50%;
     width: 45px; height: 45px;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.2rem; [cite: 25]
 }
 </style>
 </head>
@@ -183,14 +180,14 @@ transform: rotateY(180deg); border-color: var(--accent); }
     </div>
 
     <div class="scene">
-        <div class="card" id="flashcard" onclick="flipCard()">
+        <div class="card" id="flashcard" onclick="flipCard()"> [cite: 27]
             <div class="card-face front">
                 <div class="emoji-img" id="cardImg">❓</div>
                 <div class="tap-hint">👆 Tap to flip</div>
             </div>
             <div class="card-face back">
-                <div class="word-text" id="cardWord">WORD</div>
-                <button class="sound-btn-small" onclick="event.stopPropagation(); playCurrentAudio()">🔊</button>
+                <div class="word-text" id="cardWord">WORD</div> [cite: 28]
+                <button class="sound-btn-small" onclick="event.stopPropagation(); playCurrentAudio()">🔊</button> [cite: 29]
                 <div class="tap-hint white">👆 Tap to flip back</div>
             </div>
         </div>
@@ -205,17 +202,21 @@ transform: rotateY(180deg); border-color: var(--accent); }
 
 <script>
 const vocab = [
-    /* CATEGORÍA: CALENDAR (PNG) */
-    {en:"JANUARY", img:"JANUARY.png", isImage: true, cat:"CALENDAR"}, {en:"FEBRUARY", img:"FEBRUARY.png", isImage: true, cat:"CALENDAR"}, {en:"MARCH", img:"MARCH.png", isImage: true, cat:"CALENDAR"},
-    {en:"APRIL", img:"APRIL.png", isImage: true, cat:"CALENDAR"}, {en:"MAY", img:"MAY.png", isImage: true, cat:"CALENDAR"}, {en:"JUNE", img:"JUNE.png", isImage: true, cat:"CALENDAR"},
-    {en:"JULY", img:"JULY.png", isImage: true, cat:"CALENDAR"}, {en:"AUGUST", img:"AUGUST.png", isImage: true, cat:"CALENDAR"}, {en:"SEPTEMBER", img:"SEPTEMBER.png", isImage: true, cat:"CALENDAR"},
-    {en:"OCTOBER", img:"OCTOBER.png", isImage: true, cat:"CALENDAR"}, {en:"NOVEMBER", img:"NOVEMBER.png", isImage: true, cat:"CALENDAR"}, {en:"DECEMBER", img:"DECEMBER.png", isImage: true, cat:"CALENDAR"},
-    {en:"MONDAY", img:"MONDAY.png", isImage: true, cat:"CALENDAR"}, {en:"TUESDAY", img:"TUESDAY.png", isImage: true, cat:"CALENDAR"}, {en:"WEDNESDAY", img:"WEDNESDAY.png", isImage: true, cat:"CALENDAR"},
-    {en:"THURSDAY", img:"THURSDAY.png", isImage: true, cat:"CALENDAR"}, {en:"FRIDAY", img:"FRIDAY.png", isImage: true, cat:"CALENDAR"}, {en:"SATURDAY", img:"SATURDAY.png", isImage: true, cat:"CALENDAR"},
-    {en:"SUNDAY", img:"SUNDAY.png", isImage: true, cat:"CALENDAR"}, {en:"SPRING", img:"SPRING.png", isImage: true, cat:"CALENDAR"}, {en:"SUMMER", img:"SUMMER.png", isImage: true, cat:"CALENDAR"},
-    {en:"AUTUMN", img:"AUTUMN.png", isImage: true, cat:"CALENDAR"}, {en:"WINTER", img:"WINTER.png", isImage: true, cat:"CALENDAR"},
+    /* CALENDAR (23 words - All lowercase PNG) */
+    {en:"JANUARY", img:"january.png", isImage:true, cat:"CALENDAR"}, {en:"FEBRUARY", img:"february.png", isImage:true, cat:"CALENDAR"},
+    {en:"MARCH", img:"march.png", isImage:true, cat:"CALENDAR"}, {en:"APRIL", img:"april.png", isImage:true, cat:"CALENDAR"},
+    {en:"MAY", img:"may.png", isImage:true, cat:"CALENDAR"}, {en:"JUNE", img:"june.png", isImage:true, cat:"CALENDAR"},
+    {en:"JULY", img:"july.png", isImage:true, cat:"CALENDAR"}, {en:"AUGUST", img:"august.png", isImage:true, cat:"CALENDAR"},
+    {en:"SEPTEMBER", img:"september.png", isImage:true, cat:"CALENDAR"}, {en:"OCTOBER", img:"october.png", isImage:true, cat:"CALENDAR"},
+    {en:"NOVEMBER", img:"november.png", isImage:true, cat:"CALENDAR"}, {en:"DECEMBER", img:"december.png", isImage:true, cat:"CALENDAR"},
+    {en:"MONDAY", img:"monday.png", isImage:true, cat:"CALENDAR"}, {en:"TUESDAY", img:"tuesday.png", isImage:true, cat:"CALENDAR"},
+    {en:"WEDNESDAY", img:"wednesday.png", isImage:true, cat:"CALENDAR"}, {en:"THURSDAY", img:"thursday.png", isImage:true, cat:"CALENDAR"},
+    {en:"FRIDAY", img:"friday.png", isImage:true, cat:"CALENDAR"}, {en:"SATURDAY", img:"saturday.png", isImage:true, cat:"CALENDAR"},
+    {en:"SUNDAY", img:"sunday.png", isImage:true, cat:"CALENDAR"}, {en:"SPRING", img:"spring.png", isImage:true, cat:"CALENDAR"},
+    {en:"SUMMER", img:"summer.png", isImage:true, cat:"CALENDAR"}, {en:"AUTUMN", img:"autumn.png", isImage:true, cat:"CALENDAR"},
+    {en:"WINTER", img:"winter.png", isImage:true, cat:"CALENDAR"},
 
-    /* CATEGORÍA: NUMBERS (Emojis) */
+    /* NUMBERS (26 words - Emojis) */
     {en:"ONE", img:"1️⃣", cat:"NUMBERS"}, {en:"TWO", img:"2️⃣", cat:"NUMBERS"}, {en:"THREE", img:"3️⃣", cat:"NUMBERS"},
     {en:"FOUR", img:"4️⃣", cat:"NUMBERS"}, {en:"FIVE", img:"5️⃣", cat:"NUMBERS"}, {en:"SIX", img:"6️⃣", cat:"NUMBERS"},
     {en:"SEVEN", img:"7️⃣", cat:"NUMBERS"}, {en:"EIGHT", img:"8️⃣", cat:"NUMBERS"}, {en:"NINE", img:"9️⃣", cat:"NUMBERS"},
@@ -226,55 +227,62 @@ const vocab = [
     {en:"SIXTY", img:"6️⃣0️⃣", cat:"NUMBERS"}, {en:"SEVENTY", img:"7️⃣0️⃣", cat:"NUMBERS"}, {en:"EIGHTY", img:"8️⃣0️⃣", cat:"NUMBERS"},
     {en:"NINETY", img:"9️⃣0️⃣", cat:"NUMBERS"}, {en:"ONE HUNDRED", img:"💯", cat:"NUMBERS"},
 
-    /* CATEGORÍA: SPORTS (Emojis) */
+    /* SPORTS (8 words - Emojis) */
     {en:"BASKETBALL", img:"🏀", cat:"SPORTS"}, {en:"FOOTBALL", img:"⚽", cat:"SPORTS"}, {en:"GYMNASTICS", img:"🤸", cat:"SPORTS"},
     {en:"RUNNING", img:"🏃", cat:"SPORTS"}, {en:"SKATEBOARDING", img:"🛹", cat:"SPORTS"}, {en:"SWIMMING", img:"🏊", cat:"SPORTS"},
     {en:"TABLE TENNIS", img:"🏓", cat:"SPORTS"}, {en:"YOGA", img:"🧘", cat:"SPORTS"},
 
-    /* CATEGORÍA: TV (PNG) */
-    {en:"CARTOON", img:"CARTOON.png", isImage: true, cat:"TV"}, {en:"COOKERY PROGRAMME", img:"COOKERY PROGRAMME.png", isImage: true, cat:"TV"},
-    {en:"DOCUMENTARY", img:"DOCUMENTARY.png", isImage: true, cat:"TV"}, {en:"FILM", img:"FILM.png", isImage: true, cat:"TV"},
-    {en:"MUSIC PROGRAMME", img:"MUSIC PROGRAMME.png", isImage: true, cat:"TV"}, {en:"QUIZ SHOW", img:"QUIZ SHOW.png", isImage: true, cat:"TV"},
-    {en:"TALENT SHOW", img:"TALENT SHOW.png", isImage: true, cat:"TV"}, {en:"THE NEWS", img:"THE NEWS.png", isImage: true, cat:"TV"},
+    /* TV (8 words - Lowercase PNG) */
+    {en:"CARTOON", img:"cartoon.png", isImage:true, cat:"TV"}, {en:"COOKERY PROGRAMME", img:"cookery programme.png", isImage:true, cat:"TV"},
+    {en:"DOCUMENTARY", img:"documentary.png", isImage:true, cat:"TV"}, {en:"FILM", img:"film.png", isImage:true, cat:"TV"},
+    {en:"MUSIC PROGRAMME", img:"music programme.png", isImage:true, cat:"TV"}, {en:"QUIZ SHOW", img:"quiz show.png", isImage:true, cat:"TV"},
+    {en:"TALENT SHOW", img:"talent show.png", isImage:true, cat:"TV"}, {en:"THE NEWS", img:"the news.png", isImage:true, cat:"TV"},
 
-    /* CATEGORÍA: JOBS (Mixto: PNG y Emojis) */
-    {en:"ARCHITECT", img:"ARCHITECT.png", isImage: true, cat:"JOBS"}, {en:"BUILDER", img:"👷", cat:"JOBS"}, {en:"FARMER", img:"👨‍🌾", cat:"JOBS"},
-    {en:"FIREFIGHTER", img:"👨‍🚒", cat:"JOBS"}, {en:"NURSE", img:"NURSE.png", isImage: true, cat:"JOBS"}, {en:"PILOT", img:"👩‍✈️", cat:"JOBS"},
-    {en:"SINGER", img:"SINGER.png", isImage: true, cat:"JOBS"}, {en:"VET", img:"VET.png", isImage: true, cat:"JOBS"}, {en:"TEACHER", img:"👩‍🏫", cat:"JOBS"},
-    {en:"DOCTOR", img:"👩‍⚕️", cat:"JOBS"}, {en:"TAXI DRIVER", img:"TAXI DRIVER.png", isImage: true, cat:"JOBS"}, 
-    {en:"TENNIS PLAYER", img:"TENNIS PLAYER.png", isImage: true, cat:"JOBS"}, {en:"DANCER", img:"DANCER.png", isImage: true, cat:"JOBS"},
+    /* JOBS (13 words - Mixed) */
+    {en:"ARCHITECT", img:"architect.png", isImage:true, cat:"JOBS"}, {en:"BUILDER", img:"👷", cat:"JOBS"},
+    {en:"FARMER", img:"👨‍🌾", cat:"JOBS"}, {en:"FIREFIGHTER", img:"👨‍🚒", cat:"JOBS"},
+    {en:"NURSE", img:"nurse.png", isImage:true, cat:"JOBS"}, {en:"PILOT", img:"👩‍✈️", cat:"JOBS"},
+    {en:"SINGER", img:"singer.png", isImage:true, cat:"JOBS"}, {en:"VET", img:"vet.png", isImage:true, cat:"JOBS"},
+    {en:"TEACHER", img:"👩‍🏫", cat:"JOBS"}, {en:"DOCTOR", img:"👩‍⚕️", cat:"JOBS"},
+    {en:"TAXI DRIVER", img:"taxi driver.png", isImage:true, cat:"JOBS"}, {en:"TENNIS PLAYER", img:"tennis player.png", isImage:true, cat:"JOBS"},
+    {en:"DANCER", img:"dancer.png", isImage:true, cat:"JOBS"},
 
-    /* CATEGORÍA: SHOPS (Mixto: PNG y Emojis) */
-    {en:"BAKERS", img:"BAKERS.png", isImage: true, cat:"SHOPS"}, {en:"BOOKSHOP", img:"BOOKSHOP.png", isImage: true, cat:"SHOPS"}, {en:"CAFÉ", img:"CAFÉ.png", isImage: true, cat:"SHOPS"},
-    {en:"CLOTHES SHOP", img:"CLOTHES SHOP.png", isImage: true, cat:"SHOPS"}, {en:"DEPARTMENT STORE", img:"DEPARTMENT STORE.png", isImage: true, cat:"SHOPS"}, {en:"GREENGROCERS", img:"GREENGROCERS.png", isImage: true, cat:"SHOPS"},
-    {en:"NEWSAGENTS", img:"NEWSAGENTS.png", isImage: true, cat:"SHOPS"}, {en:"SUPERMARKET", img:"SUPERMARKET.png", isImage: true, cat:"SHOPS"}, {en:"TOY SHOP", img:"TOY SHOP.png", isImage: true, cat:"SHOPS"},
-    {en:"SHOE SHOP", img:"SHOE SHOP.png", isImage: true, cat:"SHOPS"}, 
+    /* SHOPS (13 words - Mixed, "cafe" without accent) */
+    {en:"BAKERS", img:"bakers.png", isImage:true, cat:"SHOPS"}, {en:"BOOKSHOP", img:"bookshop.png", isImage:true, cat:"SHOPS"},
+    {en:"CAFÉ", img:"cafe.png", isImage:true, cat:"SHOPS"}, {en:"CLOTHES SHOP", img:"clothes shop.png", isImage:true, cat:"SHOPS"},
+    {en:"DEPARTMENT STORE", img:"department store.png", isImage:true, cat:"SHOPS"}, {en:"GREENGROCERS", img:"greengrocers.png", isImage:true, cat:"SHOPS"},
+    {en:"NEWSAGENTS", img:"newsagents.png", isImage:true, cat:"SHOPS"}, {en:"SUPERMARKET", img:"supermarket.png", isImage:true, cat:"SHOPS"},
+    {en:"TOY SHOP", img:"toy shop.png", isImage:true, cat:"SHOPS"}, {en:"SHOE SHOP", img:"shoe shop.png", isImage:true, cat:"SHOPS"},
     {en:"EURO", img:"💶", cat:"SHOPS"}, {en:"POUND", img:"💷", cat:"SHOPS"}, {en:"DOLLAR", img:"💵", cat:"SHOPS"},
 
-    /* CATEGORÍA: APPEARANCE (PNG) */
-    {en:"BEARD", img:"BEARD.png", isImage: true, cat:"APPEARANCE"}, {en:"CURLY HAIR", img:"CURLY HAIR.png", isImage: true, cat:"APPEARANCE"},
-    {en:"DARK HAIR", img:"DARK HAIR.png", isImage: true, cat:"APPEARANCE"}, {en:"FAIR HAIR", img:"FAIR HAIR.png", isImage: true, cat:"APPEARANCE"},
-    {en:"FRECKLES", img:"FRECKLES.png", isImage: true, cat:"APPEARANCE"}, {en:"GLASSES", img:"GLASSES.png", isImage: true, cat:"APPEARANCE"},
-    {en:"MOUSTACHE", img:"MOUSTACHE.png", isImage: true, cat:"APPEARANCE"}, {en:"STRAIGHT HAIR", img:"STRAIGHT HAIR.png", isImage: true, cat:"APPEARANCE"},
-    {en:"TALL", img:"TALL.png", isImage: true, cat:"APPEARANCE"}, {en:"SHORT", img:"SHORT.png", isImage: true, cat:"APPEARANCE"},
-    {en:"OLD", img:"OLD.png", isImage: true, cat:"APPEARANCE"}, {en:"YOUNG", img:"YOUNG.png", isImage: true, cat:"APPEARANCE"},
-    {en:"THIN", img:"THIN.png", isImage: true, cat:"APPEARANCE"}, {en:"FAT", img:"FAT.png", isImage: true, cat:"APPEARANCE"},
-    {en:"WOMAN", img:"WOMAN.png", isImage: true, cat:"APPEARANCE"}, {en:"MAN", img:"MAN.png", isImage: true, cat:"APPEARANCE"},
-    {en:"BOY", img:"BOY.png", isImage: true, cat:"APPEARANCE"}, {en:"GIRL", img:"GIRL.png", isImage: true, cat:"APPEARANCE"},
+    /* APPEARANCE (18 words - Lowercase PNG) */
+    {en:"BEARD", img:"beard.png", isImage:true, cat:"APPEARANCE"}, {en:"CURLY HAIR", img:"curly hair.png", isImage:true, cat:"APPEARANCE"},
+    {en:"DARK HAIR", img:"dark hair.png", isImage:true, cat:"APPEARANCE"}, {en:"FAIR HAIR", img:"fair hair.png", isImage:true, cat:"APPEARANCE"},
+    {en:"FRECKLES", img:"freckles.png", isImage:true, cat:"APPEARANCE"}, {en:"GLASSES", img:"glasses.png", isImage:true, cat:"APPEARANCE"},
+    {en:"MOUSTACHE", img:"moustache.png", isImage:true, cat:"APPEARANCE"}, {en:"STRAIGHT HAIR", img:"straight hair.png", isImage:true, cat:"APPEARANCE"},
+    {en:"TALL", img:"tall.png", isImage:true, cat:"APPEARANCE"}, {en:"SHORT", img:"short.png", isImage:true, cat:"APPEARANCE"},
+    {en:"OLD", img:"old.png", isImage:true, cat:"APPEARANCE"}, {en:"YOUNG", img:"young.png", isImage:true, cat:"APPEARANCE"},
+    {en:"THIN", img:"thin.png", isImage:true, cat:"APPEARANCE"}, {en:"FAT", img:"fat.png", isImage:true, cat:"APPEARANCE"},
+    {en:"WOMAN", img:"woman.png", isImage:true, cat:"APPEARANCE"}, {en:"MAN", img:"man.png", isImage:true, cat:"APPEARANCE"},
+    {en:"BOY", img:"boy.png", isImage:true, cat:"APPEARANCE"}, {en:"GIRL", img:"girl.png", isImage:true, cat:"APPEARANCE"},
 
-    /* CATEGORÍA: PLACES (Emojis) */
-    {en:"AQUARIUM", img:"🐟", cat:"PLACES"}, {en:"ART GALLERY", img:"🖼️", cat:"PLACES"}, {en:"CASTLE", img:"🏰", cat:"PLACES"},
-    {en:"CITY FARM", img:"🚜", cat:"PLACES"}, {en:"FUNFAIR", img:"🎡", cat:"PLACES"}, {en:"STADIUM", img:"🏟️", cat:"PLACES"},
-    {en:"THEATRE", img:"🎭", cat:"PLACES"}, {en:"WATER PARK", img:"🌊", cat:"PLACES"}, {en:"CINEMA", img:"🎬", cat:"PLACES"},
-    {en:"FIRE STATION", img:"🚒", cat:"PLACES"}, {en:"MUSEUM", img:"🏛️", cat:"PLACES"}, {en:"HOSPITAL", img:"🏥", cat:"PLACES"},
-    {en:"POST OFFICE", img:"📮", cat:"PLACES"}, {en:"SHOPPING CENTRE", img:"🛍️", cat:"PLACES"}, {en:"SWIMMING POOL", img:"🏊", cat:"PLACES"},
-    {en:"TRAIN STATION", img:"🚉", cat:"PLACES"}, {en:"ZOO", img:"🦁", cat:"PLACES"}, {en:"SCHOOL", img:"🏫", cat:"PLACES"},
-    {en:"SUPERMARKET", img:"🛒", cat:"PLACES"}, {en:"HOTEL", img:"🏨", cat:"PLACES"}, {en:"BEACH", img:"🏖️", cat:"PLACES"},
-    {en:"PARK", img:"🌳", cat:"PLACES"}, {en:"LIBRARY", img:"📚", cat:"PLACES"}
+    /* PLACES (23 words - Emojis) */
+    {en:"AQUARIUM", img:"🐟", cat:"PLACES"}, {en:"ART GALLERY", img:"🖼️", cat:"PLACES"},
+    {en:"CASTLE", img:"🏰", cat:"PLACES"}, {en:"CITY FARM", img:"🚜", cat:"PLACES"},
+    {en:"FUNFAIR", img:"🎡", cat:"PLACES"}, {en:"STADIUM", img:"🏟️", cat:"PLACES"},
+    {en:"THEATRE", img:"🎭", cat:"PLACES"}, {en:"WATER PARK", img:"🌊", cat:"PLACES"},
+    {en:"CINEMA", img:"🎬", cat:"PLACES"}, {en:"FIRE STATION", img:"🚒", cat:"PLACES"},
+    {en:"MUSEUM", img:"🏛️", cat:"PLACES"}, {en:"HOSPITAL", img:"🏥", cat:"PLACES"},
+    {en:"POST OFFICE", img:"📮", cat:"PLACES"}, {en:"SHOPPING CENTRE", img:"🛍️", cat:"PLACES"},
+    {en:"SWIMMING POOL", img:"🏊", cat:"PLACES"}, {en:"TRAIN STATION", img:"🚉", cat:"PLACES"},
+    {en:"ZOO", img:"🦁", cat:"PLACES"}, {en:"SCHOOL", img:"🏫", cat:"PLACES"},
+    {en:"SUPERMARKET", img:"🛒", cat:"PLACES"}, {en:"HOTEL", img:"🏨", cat:"PLACES"},
+    {en:"BEACH", img:"🏖️", cat:"PLACES"}, {en:"PARK", img:"🌳", cat:"PLACES"},
+    {en:"LIBRARY", img:"📚", cat:"PLACES"}
 ];
 
-/* --- LÓGICA MANTENIDA [cite: 34-47] --- */
-let currentList = [], currentIndex = 0, isFlipped = false;
+/* --- LÓGICA DE PROGRAMACIÓN (Mantenida [cite: 34-47]) --- */
+let currentList = [], currentIndex = 0, isFlipped = false; [cite: 34]
 const ui = {
     card: document.getElementById("flashcard"),
     img: document.getElementById("cardImg"),
@@ -282,19 +290,19 @@ const ui = {
     counter: document.getElementById("counterDisplay"),
     prevBtn: document.getElementById("prevBtn"),
     nextBtn: document.getElementById("nextBtn")
-};
+}; [cite: 35]
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [array[i], array[j]] = [array[j], array[i]]; [cite: 37]
     }
-    return array;
-}
+    return array; [cite: 38]
+} [cite: 36]
 
 function changeCategory() {
     const cat = document.getElementById("categorySelect").value;
-    let tempList = (cat === "ALL") ? [...vocab] : vocab.filter(item => item.cat === cat);
+    let tempList = (cat === "ALL") ? [...vocab] : vocab.filter(item => item.cat === cat); [cite: 39]
     currentList = shuffleArray(tempList);
     currentIndex = 0;
     resetCardFace();
@@ -302,17 +310,17 @@ function changeCategory() {
 }
 
 function updateUI() {
-    if(currentList.length === 0) return;
+    if(currentList.length === 0) return; [cite: 40]
     const item = currentList[currentIndex];
-    if (item.isImage) {
+    if (item.isImage) { [cite: 41]
         ui.img.innerHTML = `<img src="${item.img}" alt="${item.en}">`;
     } else {
-        ui.img.innerHTML = item.img;
+        ui.img.innerHTML = item.img; [cite: 42]
     }
     ui.word.textContent = item.en;
-    ui.counter.textContent = `${currentIndex + 1} / ${currentList.length}`;
+    ui.counter.textContent = `${currentIndex + 1} / ${currentList.length}`; [cite: 43]
     ui.prevBtn.disabled = (currentIndex === 0);
-    ui.nextBtn.disabled = (currentIndex === currentList.length - 1);
+    ui.nextBtn.disabled = (currentIndex === currentList.length - 1); [cite: 44]
 }
 
 function flipCard() {
@@ -321,15 +329,14 @@ function flipCard() {
     if(isFlipped) setTimeout(playCurrentAudio, 200);
 }
 
-function resetCardFace() { isFlipped = false; ui.card.classList.remove("is-flipped"); }
-function nextCard() { if(currentIndex < currentList.length - 1) { currentIndex++; resetCardFace(); setTimeout(updateUI, 150); } }
+function resetCardFace() { isFlipped = false; ui.card.classList.remove("is-flipped"); } [cite: 45]
+function nextCard() { if(currentIndex < currentList.length - 1) { currentIndex++; resetCardFace(); setTimeout(updateUI, 150); } } [cite: 46]
 function prevCard() { if(currentIndex > 0) { currentIndex--; resetCardFace(); setTimeout(updateUI, 150); } }
 
 function playCurrentAudio() {
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(currentList[currentIndex].en);
-    utterance.lang = "en-GB"; 
-    utterance.rate = 0.9;
+    const utterance = new SpeechSynthesisUtterance(currentList[currentIndex].en); [cite: 47]
+    utterance.lang = "en-GB"; utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
 }
 
