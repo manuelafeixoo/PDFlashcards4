@@ -51,10 +51,32 @@ header {
     background: #fff;
     border-bottom: 2px solid #eee;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 10px;
     align-items: center;
 }
+
+/* Panel de selección múltiple personalizado */
+#multiSelectContainer {
+    display: none;
+    background: #f0f2f1;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    border: 2px solid var(--accent);
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #444;
+}
+
 select {
     padding: 10px 20px;
     border-radius: 25px;
@@ -167,18 +189,33 @@ select {
     <header><div class="logo">⚡ Flashcards 4 <span>🇬🇧</span></div></header>
 
     <div class="controls-top">
-        <label style="font-weight:bold; color:#666;">Topic:</label>
-        <select id="categorySelect" onchange="changeCategory()">
-            <option value="ALL">🌟 Mix (All)</option>
-            <option value="CALENDAR">📅 Calendar</option>
-            <option value="NUMBERS">🔢 Numbers</option>
-            <option value="SPORTS">⚽ Sports</option>
-            <option value="TV">📺 TV</option>
-            <option value="JOBS">👨‍💼 Jobs</option>
-            <option value="SHOPS">🛍️ Shops</option>
-            <option value="APPEARANCE">🧑 Appearance</option>
-            <option value="PLACES">📍 Places</option>
-        </select>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <label style="font-weight:bold; color:#666;">Topic:</label>
+            <select id="categorySelect" onchange="toggleMultiSelect()">
+                <option value="ALL">🌟 All Topics</option>
+                <option value="MIX_TOPICS">🌪️ Mix Topics</option>
+                <option value="CALENDAR">📅 Calendar</option>
+                <option value="NUMBERS">🔢 Numbers</option>
+                <option value="SPORTS">⚽ Sports</option>
+                <option value="TV">📺 TV</option>
+                <option value="JOBS">👨‍💼 Jobs</option>
+                <option value="SHOPS">🛍️ Shops</option>
+                <option value="APPEARANCE">🧑 Appearance</option>
+                <option value="PLACES">📍 Places</option>
+            </select>
+        </div>
+
+        <div id="multiSelectContainer">
+            <label class="check-item"><input type="checkbox" value="CALENDAR">📅 Calendar</label>
+            <label class="check-item"><input type="checkbox" value="NUMBERS">🔢 Numbers</label>
+            <label class="check-item"><input type="checkbox" value="SPORTS">⚽ Sports</label>
+            <label class="check-item"><input type="checkbox" value="TV">📺 TV</label>
+            <label class="check-item"><input type="checkbox" value="JOBS">👨‍💼 Jobs</label>
+            <label class="check-item"><input type="checkbox" value="SHOPS">🛍️ Shops</label>
+            <label class="check-item"><input type="checkbox" value="APPEARANCE">🧑 Appearance</label>
+            <label class="check-item"><input type="checkbox" value="PLACES">📍 Places</label>
+            <button onclick="applyAndClose()" style="grid-column: span 2; background: var(--accent); color: white; border: none; padding: 10px; border-radius: 15px; font-weight: bold; cursor: pointer;">Apply Mix</button>
+        </div>
     </div>
 
     <div class="scene">
@@ -204,7 +241,7 @@ select {
 
 <script>
 const vocab = [
-    /* CALENDAR (23 items - All PNG lowercase) [cite: 30] */
+    /* CALENDAR (23 items) [cite: 30] */
     {en:"JANUARY", img:"january.png", isImage:true, cat:"CALENDAR"}, {en:"FEBRUARY", img:"february.png", isImage:true, cat:"CALENDAR"},
     {en:"MARCH", img:"march.png", isImage:true, cat:"CALENDAR"}, {en:"APRIL", img:"april.png", isImage:true, cat:"CALENDAR"},
     {en:"MAY", img:"may.png", isImage:true, cat:"CALENDAR"}, {en:"JUNE", img:"june.png", isImage:true, cat:"CALENDAR"},
@@ -218,7 +255,7 @@ const vocab = [
     {en:"SUMMER", img:"summer.png", isImage:true, cat:"CALENDAR"}, {en:"AUTUMN", img:"autumn.png", isImage:true, cat:"CALENDAR"},
     {en:"WINTER", img:"winter.png", isImage:true, cat:"CALENDAR"},
 
-    /* NUMBERS (26 items - Emojis) [cite: 33] */
+    /* NUMBERS (26 items) [cite: 33] */
     {en:"ONE", img:"1️⃣", cat:"NUMBERS"}, {en:"TWO", img:"2️⃣", cat:"NUMBERS"}, {en:"THREE", img:"3️⃣", cat:"NUMBERS"},
     {en:"FOUR", img:"4️⃣", cat:"NUMBERS"}, {en:"FIVE", img:"5️⃣", cat:"NUMBERS"}, {en:"SIX", img:"6️⃣", cat:"NUMBERS"},
     {en:"SEVEN", img:"7️⃣", cat:"NUMBERS"}, {en:"EIGHT", img:"8️⃣", cat:"NUMBERS"}, {en:"NINE", img:"9️⃣", cat:"NUMBERS"},
@@ -229,18 +266,18 @@ const vocab = [
     {en:"SIXTY", img:"6️⃣0️⃣", cat:"NUMBERS"}, {en:"SEVENTY", img:"7️⃣0️⃣", cat:"NUMBERS"}, {en:"EIGHTY", img:"8️⃣0️⃣", cat:"NUMBERS"},
     {en:"NINETY", img:"9️⃣0️⃣", cat:"NUMBERS"}, {en:"ONE HUNDRED", img:"💯", cat:"NUMBERS"},
 
-    /* SPORTS (8 items - Emojis) [cite: 32] */
+    /* SPORTS (8 items) [cite: 32] */
     {en:"BASKETBALL", img:"🏀", cat:"SPORTS"}, {en:"FOOTBALL", img:"⚽", cat:"SPORTS"}, {en:"GYMNASTICS", img:"🤸", cat:"SPORTS"},
     {en:"RUNNING", img:"🏃", cat:"SPORTS"}, {en:"SKATEBOARDING", img:"🛹", cat:"SPORTS"}, {en:"SWIMMING", img:"🏊", cat:"SPORTS"},
     {en:"TABLE TENNIS", img:"🏓", cat:"SPORTS"}, {en:"YOGA", img:"🧘", cat:"SPORTS"},
 
-    /* TV (8 items - All PNG lowercase) */
+    /* TV (8 items) */
     {en:"CARTOON", img:"cartoon.png", isImage:true, cat:"TV"}, {en:"COOKERY PROGRAMME", img:"cookery programme.png", isImage:true, cat:"TV"},
     {en:"DOCUMENTARY", img:"documentary.png", isImage:true, cat:"TV"}, {en:"FILM", img:"film.png", isImage:true, cat:"TV"},
     {en:"MUSIC PROGRAMME", img:"music programme.png", isImage:true, cat:"TV"}, {en:"QUIZ SHOW", img:"quiz show.png", isImage:true, cat:"TV"},
     {en:"TALENT SHOW", img:"talent show.png", isImage:true, cat:"TV"}, {en:"THE NEWS", img:"the news.png", isImage:true, cat:"TV"},
 
-    /* JOBS (13 items - Mixed) [cite: 31] */
+    /* JOBS (13 items) [cite: 31] */
     {en:"ARCHITECT", img:"architect.png", isImage:true, cat:"JOBS"}, {en:"BUILDER", img:"👷", cat:"JOBS"},
     {en:"FARMER", img:"👨‍🌾", cat:"JOBS"}, {en:"FIREFIGHTER", img:"👨‍🚒", cat:"JOBS"},
     {en:"NURSE", img:"nurse.png", isImage:true, cat:"JOBS"}, {en:"PILOT", img:"👩‍✈️", cat:"JOBS"},
@@ -249,7 +286,7 @@ const vocab = [
     {en:"TAXI DRIVER", img:"taxi driver.png", isImage:true, cat:"JOBS"}, {en:"TENNIS PLAYER", img:"tennis player.png", isImage:true, cat:"JOBS"},
     {en:"DANCER", img:"dancer.png", isImage:true, cat:"JOBS"},
 
-    /* SHOPS (13 items - Mixed) */
+    /* SHOPS (13 items) */
     {en:"BAKERS", img:"bakers.png", isImage:true, cat:"SHOPS"}, {en:"BOOKSHOP", img:"bookshop.png", isImage:true, cat:"SHOPS"},
     {en:"CAFÉ", img:"cafe.png", isImage:true, cat:"SHOPS"}, {en:"CLOTHES SHOP", img:"clothes shop.png", isImage:true, cat:"SHOPS"},
     {en:"DEPARTMENT STORE", img:"department store.png", isImage:true, cat:"SHOPS"}, {en:"GREENGROCERS", img:"greengrocers.png", isImage:true, cat:"SHOPS"},
@@ -257,7 +294,7 @@ const vocab = [
     {en:"TOY SHOP", img:"toy shop.png", isImage:true, cat:"SHOPS"}, {en:"SHOE SHOP", img:"shoe shop.png", isImage:true, cat:"SHOPS"},
     {en:"EURO", img:"💶", cat:"SHOPS"}, {en:"POUND", img:"💷", cat:"SHOPS"}, {en:"DOLLAR", img:"💵", cat:"SHOPS"},
 
-    /* APPEARANCE (18 items - All PNG lowercase) */
+    /* APPEARANCE (18 items) */
     {en:"BEARD", img:"beard.png", isImage:true, cat:"APPEARANCE"}, {en:"CURLY HAIR", img:"curly hair.png", isImage:true, cat:"APPEARANCE"},
     {en:"DARK HAIR", img:"dark hair.png", isImage:true, cat:"APPEARANCE"}, {en:"FAIR HAIR", img:"fair hair.png", isImage:true, cat:"APPEARANCE"},
     {en:"FRECKLES", img:"freckles.png", isImage:true, cat:"APPEARANCE"}, {en:"GLASSES", img:"glasses.png", isImage:true, cat:"APPEARANCE"},
@@ -268,7 +305,7 @@ const vocab = [
     {en:"WOMAN", img:"woman.png", isImage:true, cat:"APPEARANCE"}, {en:"MAN", img:"man.png", isImage:true, cat:"APPEARANCE"},
     {en:"BOY", img:"boy.png", isImage:true, cat:"APPEARANCE"}, {en:"GIRL", img:"girl.png", isImage:true, cat:"APPEARANCE"},
 
-    /* PLACES (23 items - Emojis) */
+    /* PLACES (23 items) */
     {en:"AQUARIUM", img:"🐟", cat:"PLACES"}, {en:"ART GALLERY", img:"🖼️", cat:"PLACES"}, {en:"CASTLE", img:"🏰", cat:"PLACES"},
     {en:"CITY FARM", img:"🚜", cat:"PLACES"}, {en:"FUNFAIR", img:"🎡", cat:"PLACES"}, {en:"STADIUM", img:"🏟️", cat:"PLACES"},
     {en:"THEATRE", img:"🎭", cat:"PLACES"}, {en:"WATER PARK", img:"🌊", cat:"PLACES"}, {en:"CINEMA", img:"🎬", cat:"PLACES"},
@@ -279,7 +316,6 @@ const vocab = [
     {en:"PARK", img:"🌳", cat:"PLACES"}, {en:"LIBRARY", img:"📚", cat:"PLACES"}
 ];
 
-/* --- LÓGICA DE PROGRAMACIÓN (Mantenida [cite: 34-47]) --- */
 let currentList = [], currentIndex = 0, isFlipped = false;
 const ui = {
     card: document.getElementById("flashcard"),
@@ -287,7 +323,8 @@ const ui = {
     word: document.getElementById("cardWord"),
     counter: document.getElementById("counterDisplay"),
     prevBtn: document.getElementById("prevBtn"),
-    nextBtn: document.getElementById("nextBtn")
+    nextBtn: document.getElementById("nextBtn"),
+    multiPanel: document.getElementById("multiSelectContainer")
 };
 
 function shuffleArray(array) {
@@ -298,9 +335,31 @@ function shuffleArray(array) {
     return array;
 }
 
+function toggleMultiSelect() {
+    const cat = document.getElementById("categorySelect").value;
+    ui.multiPanel.style.display = (cat === "MIX_TOPICS") ? "grid" : "none";
+    if (cat !== "MIX_TOPICS") changeCategory();
+}
+
+function applyAndClose() {
+    changeCategory();
+    ui.multiPanel.style.display = "none";
+}
+
 function changeCategory() {
     const cat = document.getElementById("categorySelect").value;
-    let tempList = (cat === "ALL") ? [...vocab] : vocab.filter(item => item.cat === cat);
+    let tempList = [];
+
+    if (cat === "ALL") {
+        tempList = [...vocab];
+    } else if (cat === "MIX_TOPICS") {
+        const checkedValues = Array.from(ui.multiPanel.querySelectorAll('input:checked')).map(cb => cb.value);
+        tempList = vocab.filter(item => checkedValues.includes(item.cat));
+    } else {
+        tempList = vocab.filter(item => item.cat === cat);
+    }
+
+    if (tempList.length === 0) return;
     currentList = shuffleArray(tempList);
     currentIndex = 0;
     resetCardFace();
@@ -310,7 +369,6 @@ function changeCategory() {
 function updateUI() {
     if(currentList.length === 0) return;
     const item = currentList[currentIndex];
-    /* CORRECCIÓN: Renderizado condicional según isImage [cite: 41-42] */
     if (item.isImage) {
         ui.img.innerHTML = `<img src="${item.img}" alt="${item.en}">`;
     } else {
@@ -340,8 +398,6 @@ function playCurrentAudio() {
 }
 
 changeCategory();
-console.log("App ready. Vocabulary items loaded: " + vocab.length);
 </script>
 </body>
-
 </html>
